@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+        <title>Heart med</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        .fill-in{
+            color: black;
+            display: grid;
+        }
+    </style>
+    <body>
+        <header class="header">
+            <a href="" class="logo">Heart MED</a>
+        
+            <nav class="navbar">
+                <a href="/report"><i class="fa fa-file" aria-hidden="true"></i>Report</a><br>
+                <a href="/patient_data"><i class="fa fa-book" aria-hidden="true"></i>Patient Data</a><br>
+                <a href="/my_notes"><i class="fa fa-commenting" aria-hidden="true"></i>My Notes</a><br>
+                <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
+            </nav>
+            <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+
+        </header>
+        <section class="fill-in">
+        <h1>Patient Notes</h1>
+
+        <!-- Form to save notes -->
+        <form action="/save_notes" method="POST">
+            <label for="patient_name">Patient Name:</label><br>
+            <input type="text" id="patient_name" name="patient_name" required>
+            <br><br>
+            <label for="patient_details">My Notes:</label><br>
+            <textarea id="patient_details" name="patient_details" rows="4" cols="50" required></textarea>
+            <br><br>
+            <button type="submit">Save Notes</button>
+        </form>
+    
+        <hr>
+    
+        <!-- Form to view notes -->
+        <h2>View Patient Notes</h2>
+        <form action="/view_notes" method="GET">
+            <label for="search_patient_name">Enter Patient Name:</label>
+            <input type="text" id="search_patient_name" name="search_patient_name" required>
+            <br><br>
+            <button type="submit">View Notes</button>
+        </form>
+    
+        <!-- Section to display retrieved notes -->
+        {% if patient_notes %}
+            <h3>Notes for {{ patient_name }}:</h3>
+            <p>{{ patient_notes }}</p>
+        {% elif error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </section>
+    
+    </body>
+</html>

@@ -1,0 +1,208 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+body{
+    color: white;
+    
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: list-item;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color: skyblue;
+    height: 100%;
+    
+
+}
+.fa-arrow-right-from-bracket{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    transition: 1s;    
+    margin-top: 250px;
+    align-items: flex-end;
+}
+.fa-arrow-right-from-bracket:hover{
+    color: darkred;
+    font-size: 30px;
+    
+}
+
+.logo{
+    position: relative;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;  
+    font-weight: 600; 
+    transition: 1s; 
+}
+.logo:hover{
+    font-size: 30px;  
+    color: black;  
+}
+.navbar a{
+    margin-top: 30px;
+    
+    display: inline-block;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0;
+    transition: 1s;
+    
+}
+.navbar :hover{
+    color: black;
+    font-size: 30px;
+}
+.navbar 
+.fa-file:hover{
+    font-size: 30px;
+}
+.dropdown,.dropbtn {
+    margin-top: 30px;
+
+    display: inline-block;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0;
+    transition: 1s;
+}  
+/*Home page styles....................*/
+
+/*loginpage................................* */
+.login-body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(204, 239, 253);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-header {
+    background-color: skyblue;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.login-logo {
+    font-size: 25px;
+    font-weight: bold;
+    transition: 1s;
+}
+
+.login-logo:hover {
+    font-size: 30px;
+    font-weight: bold;
+        color: black;
+}
+.login-navbar{
+    display: flex;
+    gap: 15px;
+}
+
+.login-navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    transition: 1s;
+}
+
+.login-navbar a:hover {
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+}
+
+
+
+.login-container {
+    
+    background-color: skyblue;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px skyblue(0, 0, 0, 0.1);
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    text-align: center;
+    font-size: x-large;
+    
+}
+
+
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: large;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: xx-large;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    
+}
+
+.login-button a{
+    color: white;
+    text-decoration: none;
+}
+
+/*.................................,......................*/
+/*.................................,......................*/
+/*patientdata page...............*/
+.feedback{
+    color: black;
+    align-content: center;
+    margin-left: 350px;
+
+}
+.patient-container{
+    color: black;
+    margin-left: 300px;
+    margin-top: 50px;
+    align-items: center;
+    align-content: center;
+    justify-content: right;
+    column-count: 2;
+    
+}
+.patient-input{
+    padding: 10px;
+}
