@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- <link rel="stylesheet" href="styles.css"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+        <title>Heart med</title>
+        
+        <style>
+
+            /* .p{
+                display: flex;
+                align-content: center;
+                color: white;
+                font-size: larger;
+            }
+            #logout{
+                color: black;
+                align-items: end;
+                
+                
+
+            } */
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .navg{
+                background-image: url('static/istockphoto-1412647653-170667a.webp');
+                background-repeat: no-repeat;
+                background-size: cover;
+                                
+                /* margin-left: 10px; */
+                position: relative;
+                color: black;
+                width: 100%;
+                justify-content: space-between;
+                height: 100vh;
+                display: flex;
+                font-size: 25px;
+                align-items: center;
+                padding:  0;
+                transition-duration: 1s;
+
+            }
+
+            .btn-box{
+            margin-top: 20px;    
+            display: inline-block;
+            padding: 12px 28px;
+            background:rgb(90, 196, 238);
+            border-radius: 40px;
+            font-size: 16px;
+            color: white;
+            
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideBottom 1s ease forwards;
+            animation-delay: 1s;
+            }
+            .btn-box:hover{
+                color: white;
+                background-color: black;
+            }
+            .content{
+                max-width: 600px;
+                margin-left: 25px;
+                
+                
+
+            }
+            .content h3{
+                font-size: 30px;
+                font-weight: 700;
+                margin: -3px 0;
+                opacity: 1;
+                animation: slideRight 1s ease forwards;
+                animation-delay: 1s;
+            }
+            .content p{
+                margin-top: 20px;
+                font-size: 20px;
+                animation: slideLeft 1s ease forwards;
+                animation-delay: 1s;
+            }
+            .about-us{
+                background-image: url('static/dataset-card.jpg');
+                height: 100vh;
+                margin-left: 0px;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                align-items: center;
+                gap: 1.3rem;
+                background-repeat: no-repeat;
+                background-position: right;
+                background-size: 50%;
+                
+            }
+            .about-text{
+                margin-left: 25px;
+            }
+            .about-text h2{
+            font-size: 60px;
+            color: black;
+            animation: slideTop 1s ease forwards;
+            }
+            .about-text h2 span{
+            color: blue;
+            }
+            .about-text h4{
+            font-size: 29px;
+            font-weight: 600;
+            color: black;
+            line-height: 1.7;
+            margin: 15px 0 30px;
+            animation: slideRight 1s ease forwards;
+            }
+            .about-text p{
+
+                animation: slideLeft 1s ease forwards;
+            color:black;
+            font-size: 20px;
+            line-height: 1.4;
+            margin-bottom: 4 rem;
+            }
+            .services{
+                background-color: skyblue;
+                margin-left: 0px;
+                
+                color: black;
+                animation: slideTop 1s ease forwards;
+            }
+            .services-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(259px,1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.services-list div{
+    background-color: white;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 13px;
+    border-right: 10px;
+    border-radius: 20px;
+    
+    
+     transform :0.5s;
+    border-style: solid;
+}
+.services-list div:hover{
+    transform:translateY(-20px);
+}
+.services-list div i{
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: black;
+}
+.services-list div h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: black;
+    animation: slideLeft 1s ease forwards;
+}
+.services-list div a{
+    margin-top: 20px;    
+            display: inline-block;
+            padding: 12px 28px;
+            background:rgb(90, 196, 238);
+            border-radius: 40px;
+            font-size: 16px;
+            color: white;
+            
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideBottom 1s ease forwards;
+            animation-delay: 1s;
+}
+.services-list div p{
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    margin-top: 20px;
+    display: inline-block;
+    animation:slideRight 1s ease forwards;
+}
+.container{
+    margin-bottom: 100px;
+}
+            
+
+            @keyframes slideRight{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideTop{
+    0%{
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideBottom{
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes slideLeft{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+
+        </style>
+            
+
+    </head>
+    <body>
+    <section class="navg">
+        <div class="content">
+            <h1>Welcome To Heart Med</h1>
+            <p>Get to know your heart more 
+               <br>Know the ailments well before the issue gets serious</p> 
+            
+            <a href="/login" class="btn-box">Get started</a>
+            </div>
+       </section>
+       <section class="about-us">
+          <div class="about-text">
+            <h2>About <span>Us</span></h2>
+            <h4>A New approach!...</h4>
+            <p>The aim of our project was to create a machine learning model<br>
+               which can effectively predict the types of heart disease a patient have<br>
+            within the minimum time possible</p>
+          </div>
+       </section>
+       
+       <section>
+        <div class="services" id="services">
+           <div >
+               <h1 class="sub-title" style="font-size: 30px;margin-top: 20px;" >Why <span style="color: rgb(254, 254, 254);">Choose </span>Us? </h1>
+               <div class="services-list">
+               <div class="container">                 
+                <i class="bx bx-code" ></i>
+                <h2>Efficiency</h2>
+                <p>Time is of the essence in medical care. Our solution minimizes waiting periods, offering quick and reliable insights</p>
+                    <a href="https://en.wikipedia.org/wiki/Azure_Web_Apps" class="read">Learn More</a>
+            </div>
+            <div class="container">
+                <i class="bx bx-crop" ></i>
+                <h2>Accuracy</h2>
+                <p>We use advanced machine learning algorithms that have been trained on a vast dataset to ensure high accuracy in diagnosing heart conditions</p>
+                    <a href="https://www.geeksforgeeks.org/xgboost/" class="read">Learn More</a>
+            </div>
+            <div class="container">
+                <i class="bx bxl-apple"></i>
+                <h2>Comprehensive Reporting</h2>
+                <p>Get detailed reports that cover all aspects of heart health, making it easier for healthcare professionals to make informed decisions</p>
+                    <a href="https://simple.wikipedia.org/wiki/Heart_disease" class="read">Learn More</a>
+                    
+            </div>
+           </div>
+        </div>
+    </div>
+    </section>
+          
+
+    </body>
+</html>

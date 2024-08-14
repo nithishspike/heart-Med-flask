@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Heart med</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+  .sb-example-1 .searchButton i {
+    color: #000000;
+  }
+
+  .sb-example-1 .search {
+    padding: 50px;
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  .sb-example-1 .searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+
+  .sb-example-1 .searchTerm:focus {
+    color: #000c0e;
+  }
+
+  .sb-example-1 .searchButton {
+    width: 100px;
+    height: 50px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <header class="header">
+    <a href="" class="logo">Heart MED</a>
+
+    <nav class="navbar">
+      <a href="/report"><i class="fa fa-file" aria-hidden="true"></i>Report</a><br>
+      <a href="/patient_data"><i class="fa fa-book" aria-hidden="true"></i>Patient Data</a><br>
+      <a href="/my_notes"><i class="fa fa-commenting" aria-hidden="true"></i>My Notes</a><br>
+      <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
+
+    </nav>
+    <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+
+  </header>
+  </section>
+
+  <div class="sb-example-1">
+    <form class="search" action="/patient_detail" method="get">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" name="detail">
+      <button type="submit" class="searchButton">
+        <a href="/patient_detail"><i class="fa fa-search"></i></a>
+      </button>
+    </form>
+  </div>
+  </div>
+
+</body>
+
+</html>

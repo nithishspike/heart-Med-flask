@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+        <title>Heart med</title>
+
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            
+            
+        }
+        .content{
+            margin-top: 30px;
+            color: black;
+            font-style:italic;
+            
+        }
+        
+    </style>
+    <body>
+        <header class="header">
+            <a href="" class="logo">Heart MED</a>
+        
+        <nav class="navbar">
+            <a href="/report"><i class="fa fa-file" aria-hidden="true"></i>Report</a><br>
+
+            <a href="/patient_data"><i class="fa fa-book" aria-hidden="true"></i>Patient Data</a><br>
+            <a href="/my_notes"><i class="fa fa-commenting" aria-hidden="true"></i>My Notes</a><br>
+            <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
+        
+        </nav>
+        <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+
+        </header>
+        <div class="content">
+            <h1>For Help and Support</h1>
+            <h2>Phone:1234567890</h2>
+        </div>
+    </body>
+</html>
