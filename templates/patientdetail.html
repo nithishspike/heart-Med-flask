@@ -378,7 +378,7 @@
       <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
 
     </nav>
-    <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+    <a href="/logout" class="fa fa-arrow-right-from-bracket">Logout</a>
 
   </header>
   <div class="container">
@@ -386,14 +386,14 @@
       <h1 style="color: black;">PATIENT REPORT</h1><br>
       <!--{'pname': 'apple', 'age': '52', 'sex': '1', 'cp': '0', 'trestbps': '20', 'chol': '20', 'fbs': '1', 'restecg': '0', 'thalach': '20',
        'exang': '1', 'oldpeak': '20', 'slope': '0', 'ca': '52', 'thal': '1'} !-->
-      <p>Patient Id</p>
+      <p>Patient Name</p>
       <input type="text" value="{{patient_det['pname']}}" required> <br><br>
 
       <p>Age</p>
       <input type="number" name="age" id="age" value="{{patient_det['age']}}" required> <br><br>
 
       <p>Gender</p>
-      <input type="radio" value="1" name="sex" id="male" {{ "checked" if patient_det['sex']=='1' }}>
+      <input type="radio" value="1" name="sex" id="male" {{ "checked" if patient_det["sex"]=='1' }} />
       <label for="male">Male</label>
       <input type="radio" value="0" name="sex" id="female" {{ "checked" if patient_det['sex']=='0' }}>
       <label for="female">Female</label>
@@ -481,10 +481,24 @@
       <label for="reversable-defect">Reversable defect</label>
 
       <br><br>
-      <div class="submit">
+      <!-- <div class="submit">
         <input id="submit" type="submit" value="Edit">
-      </div>
+      </div> -->
     </form>
+    <div class="result">
+      <h1>Prediction Result</h1>
+      <p>The patient Have a : {{ prediction }} disease</p>
+      <br/>
+      <div class="result">
+        <p>Here are some measures to cure this disease:</p><br/>
+        <dl>
+            {% for point in cure %}
+                <dt>{{ point }}</dt>
+                <br/>
+            {% endfor %}
+        </dl>
+    </div>
+  </div>
   </div>
 
 </body>

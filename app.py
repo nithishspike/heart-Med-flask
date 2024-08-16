@@ -1,6 +1,6 @@
 from typing import Collection
 import pandas as pd
-from flask_cors import CORS # CORS for handling Cross-Origin Resource Sharing
+# from flask_cors import CORS # CORS for handling Cross-Origin Resource Sharing
 import pickle 
 from flask import Flask, request, jsonify,render_template,session,url_for,redirect
 from pymongo import MongoClient 
@@ -8,23 +8,22 @@ from gradio_client import Client
 from urllib.parse import quote_plus
 username = quote_plus("nithish")
 password = quote_plus("Spike@23")
-
 connection_string = f"mongodb+srv://{username}:{password}@patient-data.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
 print(connection_string)
 client = MongoClient(connection_string)
 mydatabase = client["dummy_data"] 
-# Create a Flask application instance
+collection = mydatabase["school"]
 app = Flask(__name__)
 app.secret_key = 'nithish'
 client = Client("yuva2110/vanilla-charbot")
 # Enable CORS for all routes, allowing requests from any origin
-CORS(app,resources={r"/*":{"origins":"*"}})
+# CORS(app,resources={r"/*":{"origins":"*"}})
 
 model = pickle.load(open('model.pkl', 'rb'))
 
 # Define a route for handling HTTP GET requests to the root URL
 @app.route('/', methods=['GET'])
-def get_data():
+def index():
     data = {
         "message":"API is Running"
     }
@@ -32,20 +31,74 @@ def get_data():
 
 @app.route("/patient_detail")
 def patient_detail():
-    print(request.form,request.args.get("detail"))
-    try:
-        if 'detail' in request.args:
-            collection = mydatabase["school"]
-            patient_det=collection.find_one({'username':session['username']},{"patient_data":{"$elemMatch":{"pname":request.args.get("detail")}}})
-            return render_template("patientdetail.html",patient_det=patient_det['patient_data'][0])
+    print(request.args,request.args.get("detail"))
+    patient_det=collection.find_one({'username':session['username']},{"patient_data":{"$elemMatch":{"pname":request.args.get("detail")}}})
+    print(patient_det,"hello")
+    try: 
+      if 'detail' in request.args:
+        patient_det = collection.find_one(
+            {'username': session['username']},
+            {"patient_data": {"$elemMatch": {"pname": request.args.get("detail")}}}
+        )
+        
+        if not patient_det or 'patient_data' not in patient_det or len(patient_det['patient_data']) == 0:
+            print("Patient details not found.")
+            return redirect(url_for('patient_data',msg="Patient details not found"))
+        
+        data = patient_det['patient_data'][0].copy()
+        print("data=",data)
+        # Pop the 'pname' key from the patient data dictionary
+        data.pop('pname', None)
+        # Convert the data to a DataFrame
+        query_df = pd.DataFrame([data])
+        
+        # Predict using the model
+        prediction = model.predict(query_df)
+        
+        # Define prediction labels as integer keys
+        prediction_labels = {
+            0: "No Heart",
+            1: "Arrhythmia",
+            2: "Cardiomyopathy",
+            3: "Congenital Heart",
+            4: "Coronary Artery",
+            5: "Heart Failure",
+            6: "Valvular Heart"
+        }
+        # Get the label corresponding to the prediction value
+        prediction_text = prediction_labels.get(prediction[0], "Unknown")
+        if(True or prediction_text=="No Heart"):
+            mess="give me 3 lines that helps the patient to prevent from having the heart disease"
         else:
-            return redirect(url_for('patient_data'))
-    except:
+            mess=f"Patient has {prediction_text}, in 3 lines give some measures to cure this disease."
+        # Call the AI API to get the cure measures
+        result = client.predict(
+            message=mess,
+            system_message="You are a friendly Chatbot.",
+            max_tokens=512,
+            temperature=0.7,
+            top_p=0.95,
+            api_name="/chat"
+        )
+        # Split the result into lines and render the template
+        print(patient_det['patient_data'][0])
+        return render_template("patientdetail.html", patient_det=patient_det['patient_data'][0], prediction=prediction_text, cure=result.split("\n"))
+    
+      else:
+
+
         return redirect(url_for('patient_data'))
-    return redirect(url_for('patient_data'))
+
+    except Exception as e: 
+       print(f"Error: {e}")
+       return redirect(url_for('patient_data'))
+    
 @app.route("/report")
 def report():
-    return render_template("report.html")
+    if "username" in session:
+       return render_template("report.html")
+    else:
+        return redirect(url_for("index"))
 @app.route("/login")
 def login():
     return render_template("login.html")
@@ -56,16 +109,30 @@ def signup():
 
 @app.route("/patient_data")
 def patient_data():
-    return render_template("patientdata.html")
+    msg=request.args.get("msg",None)
+    print(msg,"vanako")
+    if "username" in session:
+       print(msg)
+       return render_template("patientdata.html",msg=msg)
+    else:
+        return redirect(url_for("index"))
+    
 # Define a route for making predictions
 
 @app.route('/my_notes')
 def my_notes():
-    return render_template("mynotes.html")
+    if "username" in session:
+       return render_template("mynotes.html")
+    else:
+        return redirect(url_for("index"))
+    
 
 @app.route("/support")
 def support():
-    return render_template("support.html")
+    if "username" in session:
+       return render_template("support.html")
+    else:
+        return redirect(url_for("index"))
 
 @app.route('/predict', methods=['POST','GET'])
 def predict():
@@ -146,22 +213,6 @@ def login_check():
 #     collection = mydatabase["school"]
 #     print(collection.update_one({"username":username},{"$push": {"patient_data": data}}))
 #     return jsonify({"message": "Patient data inserted successfully"})
-# from flask import Flask, request, render_template, session, jsonify
-# from pymongo import MongoClient
-# from urllib.parse import quote_plus
-
-# # MongoDB connection setup
-# username = quote_plus("nithish")
-# password = quote_plus("Spike@23")
-# connection_string = f"mongodb+srv://{username}:{password}@patient-data.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
-# client = MongoClient(connection_string)
-# mydatabase = client["dummy_data"]
-# collection = mydatabase["school"]
-
-# # # ap'p = Flask(__name__)
-# # # app.secret_key = 'nithish
-
-# Route to save notes
 
 @app.route("/save_notes", methods=['POST'])
 def save_notes():
@@ -175,6 +226,9 @@ def save_notes():
     )
     
     return jsonify({'msg': "Notes saved successfully"})
+
+
+
 
 # Route to view notes
 @app.route("/view_notes", methods=['GET'])
@@ -192,6 +246,11 @@ def view_notes():
     else:
         error = "No notes found for the entered patient name."
         return render_template("mynotes.html", error=error)
+@app.route("/logout")
+def logout():
+    session.pop("username",None)
+    return redirect(url_for("index"))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

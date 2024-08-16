@@ -231,7 +231,7 @@
       <a href="/my_notes"><i class="fa fa-note-sticky" aria-hidden="true"></i>My Notes</a><br>
       <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
     </nav>
-    <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+    <a href="/logout" class="fa fa-arrow-right-from-bracket">Logout</a>
   </header>
   <div class="container">
     <form action="/predict" method="POST">
@@ -314,15 +314,16 @@
     
       <br><br>
       <div class="submit">
-        <input id="predict" type="submit" name="action" value="Predict">
+        <!-- <input id="predict" type="submit" name="action" value="Predict"> -->
         <input id="save" type="submit" name="action" value="Save">
       </div>
     </form>
-        <div class="result">
-      <h1>Prediction Result</h1>
+    {% if prediction %}
+    <div class="result">
+      <h1>Result</h1>
       <p>The patient Have a : {{ prediction }} disease</p>
       <br/>
-      <div class="result">
+      <!-- <div class="result">
         <p>Here are some measures to cure this disease:</p>
         <dl>
             {% for point in cure %}
@@ -330,8 +331,10 @@
                 <br/>
             {% endfor %}
         </dl>
-    </div>
-  </div>
+       </div> -->
+     </div>
+     {% endif %}
+
 
 
 </body>

@@ -73,18 +73,19 @@
       <a href="/support"><i class="fa fa-flag" aria-hidden="true"></i>Support</a><br>
 
     </nav>
-    <a href="/login" class="fa fa-arrow-right-from-bracket">Logout</a>
+    <a href="/logout" class="fa fa-arrow-right-from-bracket">Logout</a>
 
   </header>
   </section>
 
   <div class="sb-example-1">
     <form class="search" action="/patient_detail" method="get">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?" name="detail">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" name="detail"/>
       <button type="submit" class="searchButton">
         <a href="/patient_detail"><i class="fa fa-search"></i></a>
       </button>
     </form>
+    <h1 style="color:#000000">{{msg if msg}} </h1>
   </div>
   </div>
 
