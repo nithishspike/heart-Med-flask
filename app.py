@@ -64,7 +64,7 @@ def patient_detail():
         }
         # Get the label corresponding to the prediction value
         prediction_text = prediction_labels.get(prediction[0], "Unknown")
-        if(True or prediction_text=="No Heart"):
+        if(prediction_text=="No Heart"):
             mess="give me 3 lines that helps the patient to prevent from having the heart disease"
         else:
             mess=f"Patient has {prediction_text}, in 3 lines give some measures to cure this disease."

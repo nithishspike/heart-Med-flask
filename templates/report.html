@@ -256,7 +256,7 @@
       <input type="radio" id="atypical-angina" name="cp" value="1" {% if request.form.cp == '1' %}checked{% endif %}>
       <label for="atypical-angina">Atypical Angina</label>
       <input type="radio" id="non-anginal" name="cp" value="2" {% if request.form.cp == '2' %}checked{% endif %}>
-      <label for="non-anginal-pain">Non Anginal Pain</label>
+      <label for="non-anginal">Non Anginal Pain</label>
       <input type="radio" id="asymptomatic" name="cp" value="0" {% if request.form.cp == '3' %}checked{% endif %}>
       <label for="asymptomatic">Asymptomatic</label>
       <br><br>
@@ -321,7 +321,7 @@
     {% if prediction %}
     <div class="result">
       <h1>Result</h1>
-      <p>The patient Have a : {{ prediction }} disease</p>
+      <p>{{ prediction }} disease</p>
       <br/>
       <!-- <div class="result">
         <p>Here are some measures to cure this disease:</p>
