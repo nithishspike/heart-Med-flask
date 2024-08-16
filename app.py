@@ -1,16 +1,13 @@
 from typing import Collection
-import pandas as pd
-# from flask_cors import CORS # CORS for handling Cross-Origin Resource Sharing
+import pandas as pd 
 import pickle 
 from flask import Flask, request, jsonify,render_template,session,url_for,redirect
 from pymongo import MongoClient 
 from gradio_client import Client
-from urllib.parse import quote_plus
-username = quote_plus("nithish")
-password = quote_plus("Spike@23")
-connection_string = f"mongodb+srv://{username}:{password}@patient-data.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
-print(connection_string)
-client = MongoClient(connection_string)
+import os
+from dotenv import load_dotenv
+load_dotenv()
+client = MongoClient(os.getenv("mongodb_url"))
 mydatabase = client["dummy_data"] 
 collection = mydatabase["school"]
 app = Flask(__name__)
@@ -136,7 +133,6 @@ def support():
 
 @app.route('/predict', methods=['POST','GET'])
 def predict():
-    collection = mydatabase["school"]
     try:
         data = request.form
         print(data,data.get("action"),"hi")
@@ -172,7 +168,6 @@ def predict():
         return jsonify({'error': str(e)})
 @app.route("/signup_check",methods=['POST','GET'])
 def signup_check():
-    collection = mydatabase["school"]
     try:
         data = request.form
         username = data.get('username')
@@ -196,7 +191,6 @@ def login_check():
     data = request.form
     username = data.get('username')
     password = data.get('password')
-    collection = mydatabase["school"]
     user = collection.find_one({"username": username, "password": password})
     print(username,password,user)
     if user:
