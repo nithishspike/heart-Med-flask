@@ -75,7 +75,6 @@ pyparsing
 python-dateutil
 python-dotenv
 pytz
-pywin32
 PyYAML
 pyzmq
 regex
