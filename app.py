@@ -7,7 +7,7 @@ from gradio_client import Client
 import os
 from dotenv import load_dotenv
 load_dotenv()
-client = MongoClient(os.getenv("mongodb_url"))
+client = MongoClient("mongodb+srv://nithish:Spike-23@patient-data.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000")
 mydatabase = client["dummy_data"] 
 collection = mydatabase["school"]
 app = Flask(__name__)
