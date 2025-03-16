@@ -6,10 +6,13 @@ from pymongo import MongoClient
 from gradio_client import Client
 import os
 from dotenv import load_dotenv
+import urllib.parse
 load_dotenv()
-username = "omkar"
-password = "Doctor2025"  # '@' is a special character that needs encoding
-client = MongoClient("mongodb+srv://omkar:Doctor2025@doctor-med.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000")
+username = urllib.parse.quote_plus("omkar")
+password = urllib.parse.quote_plus("Doctor@2025")
+
+# Construct the MongoDB connection string safely
+client = f"mongodb+srv://{username}:{password}@doctor-med.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
 mydatabase = client["dummy_data"] 
 collection = mydatabase["school"]
 app = Flask(__name__)
