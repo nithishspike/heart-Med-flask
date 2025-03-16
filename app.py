@@ -5,15 +5,11 @@ from flask import Flask, request, jsonify,render_template,session,url_for,redire
 from pymongo import MongoClient 
 from gradio_client import Client
 import os
-import urllib.parse
 from dotenv import load_dotenv
 load_dotenv()
 username = "omkar"
-password = "Doctor@2025"  # '@' is a special character that needs encoding
-# Encode username & password
-encoded_username = urllib.parse.quote_plus(username)
-encoded_password = urllib.parse.quote_plus(password)
-client = f"mongodb+srv://{encoded_username}:{encoded_password}@doctor-med.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
+password = "Doctor2025"  # '@' is a special character that needs encoding
+client = MongoClient("mongodb+srv://omkar:Doctor2025@doctor-med.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000")
 mydatabase = client["dummy_data"] 
 collection = mydatabase["school"]
 app = Flask(__name__)
